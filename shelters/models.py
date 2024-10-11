@@ -23,3 +23,20 @@ class CareTaker(AbstractUser):
 
     def __str__(self):
         return f"{self.username} ({self.first_name} {self.last_name})"
+
+
+class Animal(models.Model):
+    name = models.CharField(max_length=255)
+    age = models.IntegerField()
+    species = models.CharField(max_length=100)
+    arrival_date = models.DateField()
+    description = models.TextField()
+    is_adopted = models.BooleanField(default=False)
+    shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
+    caretakers = models.ManyToManyField(CareTaker, related_name="animals")
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
