@@ -24,6 +24,10 @@ class ShelterListView(generic.ListView):
     queryset = Shelter.objects.order_by("name")
 
 
+class ShelterDetailView(generic.DetailView):
+    model = Shelter
+
+
 class AnimalListView(generic.ListView):
     model = Animal
     queryset = Animal.objects.order_by("name")
