@@ -29,6 +29,10 @@ class AnimalListView(generic.ListView):
     queryset = Animal.objects.order_by("name")
 
 
+class AnimalDetailView(generic.DetailView):
+    model = Animal
+
+
 class CareTakerListView(generic.ListView):
     model = CareTaker
     queryset = CareTaker.objects.order_by("first_name")
