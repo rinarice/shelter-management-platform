@@ -6,6 +6,7 @@ from shelters.views import (
     AnimalListView,
     AnimalDetailView,
     CareTakerListView,
+    CareTakerDetailView,
 )
 
 app_name = "shelters"
@@ -36,5 +37,10 @@ urlpatterns = [
         "caretakers/",
         CareTakerListView.as_view(),
         name="caretaker_list"
+    ),
+    path(
+        "caretakers/<int:pk>/",
+        CareTakerDetailView.as_view(),
+        name="caretaker_detail"
     ),
 ]
