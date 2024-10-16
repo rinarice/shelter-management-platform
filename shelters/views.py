@@ -22,3 +22,8 @@ def index(request: HttpRequest) -> HttpResponse:
 class ShelterListView(generic.ListView):
     model = Shelter
     queryset = Shelter.objects.order_by("name")
+
+
+class AnimalListView(generic.ListView):
+    model = Animal
+    queryset = Animal.objects.order_by("name")
