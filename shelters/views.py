@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import generic
@@ -5,6 +7,7 @@ from django.views import generic
 from shelters.models import Shelter, Animal, CareTaker
 
 
+@login_required
 def index(request: HttpRequest) -> HttpResponse:
     num_shelters = Shelter.objects.count()
     num_animals = Animal.objects.count()
@@ -19,28 +22,28 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "shelters/index.html", context)
 
 
-class ShelterListView(generic.ListView):
+class ShelterListView(LoginRequiredMixin, generic.ListView):
     model = Shelter
     queryset = Shelter.objects.order_by("name")
 
 
-class ShelterDetailView(generic.DetailView):
+class ShelterDetailView(LoginRequiredMixin, generic.DetailView):
     model = Shelter
 
 
-class AnimalListView(generic.ListView):
+class AnimalListView(LoginRequiredMixin, generic.ListView):
     model = Animal
     queryset = Animal.objects.order_by("name")
 
 
-class AnimalDetailView(generic.DetailView):
+class AnimalDetailView(LoginRequiredMixin, generic.DetailView):
     model = Animal
 
 
-class CareTakerListView(generic.ListView):
+class CareTakerListView(LoginRequiredMixin, generic.ListView):
     model = CareTaker
     queryset = CareTaker.objects.order_by("first_name")
 
 
-class CareTakerDetailView(generic.DetailView):
+class CareTakerDetailView(LoginRequiredMixin, generic.DetailView):
     model = CareTaker
