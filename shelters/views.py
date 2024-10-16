@@ -2,8 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
+from shelters.forms import AnimalForm
 from shelters.models import Shelter, Animal, CareTaker
 
 
@@ -38,6 +40,23 @@ class AnimalListView(LoginRequiredMixin, generic.ListView):
 
 class AnimalDetailView(LoginRequiredMixin, generic.DetailView):
     model = Animal
+
+
+class AnimalCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Animal
+    form_class = AnimalForm
+    success_url = reverse_lazy("shelters:animal-list")
+
+
+class AnimalUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Animal
+    form_class = AnimalForm
+    success_url = reverse_lazy("shelters:animal-list")
+
+
+class AnimalDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Animal
+    success_url = reverse_lazy("shelters:animal-list")
 
 
 class CareTakerListView(LoginRequiredMixin, generic.ListView):
