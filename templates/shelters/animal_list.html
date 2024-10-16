@@ -5,7 +5,10 @@
   {% if object_list %}
     <ul>
       {% for animal in object_list %}
-        <li>{{ animal.name }} - {{ animal.species }}</li>
+        <li>
+          <a href="{% url 'shelters:animal_detail' animal.pk %}">{{ animal.name }} - {{ animal.species }}
+          </a>
+        </li>
       {% endfor %}
     </ul>
   {% else %}

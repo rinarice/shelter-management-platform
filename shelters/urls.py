@@ -3,6 +3,7 @@ from shelters.views import (
     index,
     ShelterListView,
     AnimalListView,
+    AnimalDetailView,
     CareTakerListView,
 )
 
@@ -13,4 +14,5 @@ urlpatterns = [
     path("shelters/", ShelterListView.as_view(), name="shelter_list"),
     path("animals/", AnimalListView.as_view(), name="animal_list"),
     path("caretakers/", CareTakerListView.as_view(), name="caretaker_list"),
+    path("animals/<int:pk>/", AnimalDetailView.as_view(), name="animal_detail"),
 ]
