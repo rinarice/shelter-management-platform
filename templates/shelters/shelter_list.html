@@ -5,7 +5,9 @@
   {% if object_list %}
     <ul>
       {% for shelter in object_list %}
-        <li>{{ shelter.name }} - {{ shelter.location }}</li>
+        <li>
+          <a href="{% url 'shelters:shelter_detail' shelter.pk %}">{{ shelter.name }} - {{ shelter.location }}</a>
+        </li>
       {% endfor %}
     </ul>
   {% else %}
