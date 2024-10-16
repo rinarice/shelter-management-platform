@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.views import generic
 
 from shelters.models import Shelter, Animal, CareTaker
 
@@ -16,3 +17,8 @@ def index(request: HttpRequest) -> HttpResponse:
     }
 
     return render(request, "shelters/index.html", context)
+
+
+class ShelterListView(generic.ListView):
+    model = Shelter
+    queryset = Shelter.objects.order_by("name")
