@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>{{ object|yesno:"Update, Register New" }} Animal</h1>
-  <form action="" method="POST">
+  <form action="" method="post" novalidate>
     {% csrf_token %}
     <div>
       {{ form.non_field_errors }}
