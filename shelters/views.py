@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from shelters.forms import AnimalForm, CareTakerCreationForm
+from shelters.forms import AnimalForm, CareTakerCreationForm, ShelterForm
 from shelters.models import Shelter, Animal, CareTaker
 
 
@@ -31,6 +31,23 @@ class ShelterListView(LoginRequiredMixin, generic.ListView):
 
 class ShelterDetailView(LoginRequiredMixin, generic.DetailView):
     model = Shelter
+
+
+class ShelterCreateView(generic.CreateView):
+    model = Shelter
+    form_class = ShelterForm
+    success_url = reverse_lazy("shelters:shelter-list")
+
+
+class ShelterUpdateView(generic.UpdateView):
+    model = Shelter
+    form_class = ShelterForm
+    success_url = reverse_lazy("shelters:shelter-list")
+
+
+class ShelterDeleteView(generic.DeleteView):
+    model = Shelter
+    success_url = reverse_lazy("shelters:shelter-list")
 
 
 class AnimalListView(LoginRequiredMixin, generic.ListView):

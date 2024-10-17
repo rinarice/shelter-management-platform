@@ -2,12 +2,17 @@
 
 {% block content %}
   <h1>Shelter List</h1>
+  <a href="{% url 'shelters:shelter-create' %}">Register New Shelter</a>
   {% if object_list %}
     <ul>
       {% for shelter in object_list %}
         <li>
           <a href="{% url 'shelters:shelter-detail' shelter.pk %}"
           >{{ shelter.name }} - {{ shelter.location }}</a>
+          <a href="{% url 'shelters:shelter-update' shelter.pk %}" class="btn 
+          btn-primary btn-sm ml-2">
+            Update
+          </a>
         </li>
       {% endfor %}
     </ul>

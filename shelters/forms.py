@@ -52,10 +52,15 @@ class ShelterForm(forms.ModelForm):
 
     def clean_capacity(self):
         capacity = self.cleaned_data.get("capacity")
-        current_animal_count = self.cleaned_data.get("current_animal_count")
-        if capacity is not None and current_animal_count is not None:
-            if capacity < current_animal_count:
-                raise ValidationError(
-                    "Capacity cannot be less than the current animal count."
-                )
         return capacity
+
+    def clean_current_animal_count(self):
+        current_animal_count = self.cleaned_data.get("current_animal_count")
+        capacity = self.cleaned_data.get("capacity")
+
+        if capacity is not None and current_animal_count is not None:
+            if current_animal_count > capacity:
+                raise ValidationError(
+                    "Current animal count cannot exceed capacity."
+                )
+        return current_animal_count

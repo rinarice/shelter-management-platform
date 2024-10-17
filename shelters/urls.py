@@ -3,6 +3,9 @@ from shelters.views import (
     index,
     ShelterListView,
     ShelterDetailView,
+    ShelterCreateView,
+    ShelterUpdateView,
+    ShelterDeleteView,
     AnimalListView,
     AnimalDetailView,
     AnimalCreateView,
@@ -12,7 +15,7 @@ from shelters.views import (
     CareTakerDetailView,
     CareTakerCreateView,
     CareTakerUpdateView,
-    CareTakerDeleteView,
+    CareTakerDeleteView, ShelterUpdateView, ShelterDeleteView,
 )
 
 app_name = "shelters"
@@ -28,6 +31,21 @@ urlpatterns = [
         "shelters/<int:pk>",
         ShelterDetailView.as_view(),
         name="shelter-detail"
+    ),
+    path(
+        "shelters/create/",
+        ShelterCreateView.as_view(),
+        name="shelter-create"
+    ),
+    path(
+        "shelters/<int:pk>/update/",
+        ShelterUpdateView.as_view(),
+         name="shelter-update"
+    ),
+    path(
+        "shelters/<int:pk>/delete/",
+        ShelterDeleteView.as_view(),
+         name="shelter-delete"
     ),
     path(
         "animals/",
@@ -79,5 +97,4 @@ urlpatterns = [
         CareTakerDeleteView.as_view(),
         name="caretaker-delete"
     ),
-
 ]
