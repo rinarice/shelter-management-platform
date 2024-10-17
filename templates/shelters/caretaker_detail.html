@@ -6,4 +6,7 @@
   <p>Phone Number: {{ object.phone_number }}</p>
   <p>Address: {{ object.address }}</p>
   <p>Years of Experience: {{ object.years_of_experience }}</p>
+  
+  <a href="{% url 'shelters:caretaker-delete' caretaker.pk %}" class="btn 
+  btn-danger">Remove Caretaker</a>
 {% endblock %}
