@@ -6,4 +6,6 @@
   <p>Contact Number: {{ object.contact_number }}</p>
   <p>Capacity: {{ object.capacity }}</p>
   <p>Current Animal Count: {{ object.current_animal_count }}</p>
+  <a href="{% url 'shelters:shelter-update' object.pk %}" class="btn btn-secondary">Edit</a>
+  <a href="{% url 'shelters:shelter-delete' object.pk %}" class="btn btn-danger">Delete</a>
 {% endblock %}
