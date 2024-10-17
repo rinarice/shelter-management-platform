@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ object|yesno:"Update, Register New" }} Animal</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <div>
+      {{ form.non_field_errors }}
+      <label for="name">Name</label>
+      {{ form.name }}
+    </div>
+    <div>
+      <label for="age">Age</label>
+      {{ form.age }}
+    </div>
+    <div>
+      <label for="species">Species</label>
+      {{ form.species }}
+    </div>
+    <div>
+      <label for="arrival_date">Arrival Date</label>
+      {{ form.arrival_date }}
+    </div>
+    <div>
+      <label for="caretakers">Caretakers</label>
+      {{ form.caretakers }}
+    </div>
+    <div>
+      <label for="shelter">Shelter</label>
+      {{ form.shelter }}
+    </div>
+    <div>
+      <label for="is_adopted">Adopted</label>
+      {{ form.is_adopted }}
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
+  </form>
+{% endblock %}
