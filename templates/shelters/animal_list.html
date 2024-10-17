@@ -2,12 +2,18 @@
 
 {% block content %}
   <h1>Animal List</h1>
+  <a href="{% url 'shelters:animal-create' %}" class="btn btn-success mb-3">
+    Register New Animal
+  </a>
   {% if object_list %}
     <ul>
       {% for animal in object_list %}
         <li>
           <a href="{% url 'shelters:animal-detail' animal.pk %}"
           >{{ animal.name }} - {{ animal.species }}
+          </a>
+          <a href="{% url 'shelters:animal-update' animal.pk %}" class="btn btn-primary btn-sm ml-2">
+            Update
           </a>
         </li>
       {% endfor %}
