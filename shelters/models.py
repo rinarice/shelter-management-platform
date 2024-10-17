@@ -27,10 +27,10 @@ class CareTaker(AbstractUser):
 
 class Animal(models.Model):
     name = models.CharField(max_length=255)
-    age = models.IntegerField()
+    age = models.IntegerField(null=True, blank=True)
     species = models.CharField(max_length=100)
     arrival_date = models.DateField()
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     is_adopted = models.BooleanField(default=False)
     shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
     caretakers = models.ManyToManyField(CareTaker, related_name="animals")
