@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ object|yesno:"Update, Register New" }} Caretaker</h1>
+  <form action="" method="post" novalidate>
+    {% csrf_token %}
+    
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <div>
+      {{ form.non_field_errors }}
+      <label for="username">Username</label>
+      {{ form.username }}
+    </div>
+    <div>
+      {{ form.non_field_errors }}
+      <label for="first_name">First Name</label>
+      {{ form.first_name }}
+    </div>
+    <div>
+      {{ form.non_field_errors }}
+      <label for="last_name">Last Name</label>
+      {{ form.last_name }}
+    </div>
+    <div>
+      <label for="email">Email</label>
+      {{ form.email }}
+    </div>
+    <div>
+      <label for="password1">Password</label>
+      {{ form.password1 }}
+    </div>
+    <div>
+      <label for="password2">Confirm Password</label>
+      {{ form.password2 }}
+    </div>
+    <div>
+      <label for="phone_number">Phone Number</label>
+      {{ form.phone_number }}
+    </div>
+    <div>
+      <label for="address">Address</label>
+      {{ form.address }}
+    </div>
+    <div>
+      <label for="years_of_experience">Years of Experience</label>
+      {{ form.years_of_experience }}
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
+  </form>
+{% endblock %}

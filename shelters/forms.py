@@ -1,8 +1,33 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
-from shelters.models import Animal, Shelter
+from shelters.models import Animal, Shelter, CareTaker
+
+
+class CareTakerCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = CareTaker
+        fields = UserCreationForm.Meta.fields + (
+            "first_name",
+            "last_name",
+            "username",
+            "email",
+            "password1",
+            "password2",
+            "phone_number",
+            "address",
+            "years_of_experience",
+        )
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        if CareTaker.objects.exclude(pk=self.instance.pk).filter(
+                username=username).exists():
+            raise forms.ValidationError(
+                "A user with that username already exists.")
+        return username
 
 
 class AnimalForm(forms.ModelForm):

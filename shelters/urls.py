@@ -10,6 +10,9 @@ from shelters.views import (
     AnimalDeleteView,
     CareTakerListView,
     CareTakerDetailView,
+    CareTakerCreateView,
+    CareTakerUpdateView,
+    CareTakerDeleteView,
 )
 
 app_name = "shelters"
@@ -61,4 +64,20 @@ urlpatterns = [
         CareTakerDetailView.as_view(),
         name="caretaker-detail"
     ),
+    path(
+        "caretakers/create/",
+        CareTakerCreateView.as_view(),
+        name="caretaker-create"
+    ),
+    path(
+        "caretakers/<int:pk>/update/",
+        CareTakerUpdateView.as_view(),
+        name="caretaker-update"
+    ),
+    path(
+        "caretakers/<int:pk>/delete/",
+        CareTakerDeleteView.as_view(),
+        name="caretaker-delete"
+    ),
+
 ]

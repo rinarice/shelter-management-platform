@@ -1,0 +1,12 @@
+ {% extends "base.html" %}
+
+{% block content %}
+<h1>Delete Caretaker</h1>
+<p>Are you sure you want to delete the caretaker: {{ object.username }} - 
+  {{ object.first_name }} {{ object.last_name }}?</p>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes" class="btn btn-danger">
+    <a href="{% url 'shelters:caretaker-list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
