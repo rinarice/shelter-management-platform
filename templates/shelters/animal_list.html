@@ -6,7 +6,8 @@
     <ul>
       {% for animal in object_list %}
         <li>
-          <a href="{% url 'shelters:animal_detail' animal.pk %}">{{ animal.name }} - {{ animal.species }}
+          <a href="{% url 'shelters:animal-detail' animal.pk %}"
+          >{{ animal.name }} - {{ animal.species }}
           </a>
         </li>
       {% endfor %}
