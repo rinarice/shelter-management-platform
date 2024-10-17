@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -57,6 +57,17 @@ class AnimalListView(LoginRequiredMixin, generic.ListView):
 
 class AnimalDetailView(LoginRequiredMixin, generic.DetailView):
     model = Animal
+
+    def post(self, request, *args, **kwargs):
+        animal = self.get_object()
+        action = request.POST.get("action")
+
+        if action == "start_caring":
+            animal.caretakers.add(request.user)
+        elif action == "stop_caring":
+            animal.caretakers.remove(request.user)
+
+        return redirect("shelters:animal-detail", pk=animal.pk)
 
 
 class AnimalCreateView(LoginRequiredMixin, generic.CreateView):
