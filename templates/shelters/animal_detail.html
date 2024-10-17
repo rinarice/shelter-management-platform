@@ -7,4 +7,8 @@
   <p>Description: {{  object.description }}</p>
   <p>Shelter: {{ object.shelter.name }}</p>
   <p>Adopted: {{ object.is_adopted }}</p>
+  
+  <a href="{% url 'shelters:animal-delete' animal.pk %}" class="btn 
+  btn-danger">Remove Animal</a>
+
 {% endblock %}
