@@ -6,9 +6,29 @@
   <p>Arrival Date: {{ object.arrival_date }}</p>
   <p>Description: {{  object.description }}</p>
   <p>Shelter: {{ object.shelter.name }}</p>
-  <p>Adopted: {{ object.is_adopted }}</p>
+  <p>Adopted: {{ object.is_adopted|yesno:"Yes,No" }}</p>
   
   <a href="{% url 'shelters:animal-delete' animal.pk %}" class="btn 
   btn-danger">Remove Animal</a>
+  
+  <h3>
+    Caretakers
+    <span style="float: right;">
+      {% if user in animal.caretakers.all %}
+        <form method="post" action="{% url 'shelters:animal-detail' animal.pk %}" style="display: inline;">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="stop_caring">
+          <button type="submit" class="btn btn-danger">Unassign me from {{ animal.name }}</button>
+        </form>
+      {% else %}
+        <form method="post" action="{% url 'shelters:animal-detail' animal.pk %}" style="display: inline;">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="start_caring">
+          <button type="submit" class="btn btn-success">Start Care for
+            {{ animal.name }}</button>
+        </form>
+      {% endif %}
+    </span>
+  </h3>
 
 {% endblock %}
