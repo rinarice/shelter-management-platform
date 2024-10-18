@@ -31,6 +31,7 @@ def index(request: HttpRequest) -> HttpResponse:
 class ShelterListView(LoginRequiredMixin, generic.ListView):
     model = Shelter
     queryset = Shelter.objects.order_by("name")
+    paginate_by = 2
 
 
 class ShelterDetailView(LoginRequiredMixin, generic.DetailView):
@@ -57,6 +58,7 @@ class ShelterDeleteView(generic.DeleteView):
 class AnimalListView(LoginRequiredMixin, generic.ListView):
     model = Animal
     queryset = Animal.objects.order_by("name")
+    paginate_by = 2
 
 
 class AnimalDetailView(LoginRequiredMixin, generic.DetailView):
@@ -94,6 +96,7 @@ class AnimalDeleteView(LoginRequiredMixin, generic.DeleteView):
 class CareTakerListView(LoginRequiredMixin, generic.ListView):
     model = CareTaker
     queryset = CareTaker.objects.order_by("first_name")
+    paginate_by = 2
 
 
 class CareTakerDetailView(LoginRequiredMixin, generic.DetailView):
