@@ -64,3 +64,40 @@ class ShelterForm(forms.ModelForm):
                     "Current animal count cannot exceed capacity."
                 )
         return current_animal_count
+
+
+class CaretakerSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by caretaker username"
+            }
+        )
+    )
+
+class AnimalSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by animal name"
+            }
+        )
+    )
+
+class ShelterSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by shelter name"
+            }
+        )
+    )

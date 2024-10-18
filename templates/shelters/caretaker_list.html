@@ -2,6 +2,12 @@
 
 {% block content %}
   <h1>CareTaker List</h1>
+  
+  <form method="get" action="" class="form-inline mb-3">
+    {{ search_form }}
+    <input class="btn btn-secondary" type="submit" value="🔎">
+  </form>
+  
   <a href="{% url 'shelters:caretaker-create' %}" class="btn btn-success mb-3">
     Register New Caretaker
   </a>
