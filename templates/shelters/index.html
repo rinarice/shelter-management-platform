@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <h1>Welcome to the Animal Shelter Management System</h1>
+  <p>Manage animals, caretakers, and shelters efficiently!</p>
+
+  <h2>System Overview</h2>
+  <p>The system currently has the following records:</p>
   <ul>
-    <li>Number of shelters: {{ num_shelters }}</li>
-    <li>Number of animals: {{ num_animals }}</li>
-    <li>Number of caretakers: {{ num_caretakers }}</li>
+    <li><strong>Shelters:</strong> {{ num_shelters }}</li>
+    <li><strong>Animals:</strong> {{ num_animals }}</li>
+    <li><strong>Caretakers:</strong> {{ num_caretakers }}</li>
   </ul>
+
+  <p>You have visited this page
+    {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
 {% endblock %}
