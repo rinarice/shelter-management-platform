@@ -2,6 +2,12 @@
 
 {% block content %}
   <h1>Shelter List</h1>
+  
+  <form method="get" action="" class="form-inline mb-3">
+    {{ search_form }}
+    <input class="btn btn-secondary" type="submit" value="🔎">
+  </form>
+  
   <a href="{% url 'shelters:shelter-create' %}">Register New Shelter</a>
   {% if object_list %}
     <ul>

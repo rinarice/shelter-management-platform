@@ -5,7 +5,14 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from shelters.forms import AnimalForm, CareTakerCreationForm, ShelterForm
+from shelters.forms import (
+    AnimalForm,
+    CareTakerCreationForm,
+    ShelterForm,
+    ShelterSearchForm,
+    AnimalSearchForm,
+    CaretakerSearchForm
+)
 from shelters.models import Shelter, Animal, CareTaker
 
 
@@ -30,8 +37,24 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class ShelterListView(LoginRequiredMixin, generic.ListView):
     model = Shelter
-    queryset = Shelter.objects.order_by("name")
+    context_object_name = "shelter_list"
+    template_name = "shelters/shelter_list.html"
     paginate_by = 2
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = ShelterSearchForm(initial={"name": name})
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = ShelterSearchForm(self.request.GET)
+        if form.is_valid():
+            queryset = queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+        return queryset
 
 
 class ShelterDetailView(LoginRequiredMixin, generic.DetailView):
@@ -57,8 +80,24 @@ class ShelterDeleteView(generic.DeleteView):
 
 class AnimalListView(LoginRequiredMixin, generic.ListView):
     model = Animal
-    queryset = Animal.objects.order_by("name")
+    context_object_name = "animal_list"
+    template_name = "shelters/animal_list.html"
     paginate_by = 2
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = AnimalSearchForm(initial={"name": name})
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = AnimalSearchForm(self.request.GET)
+        if form.is_valid():
+            queryset = queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+        return queryset
 
 
 class AnimalDetailView(LoginRequiredMixin, generic.DetailView):
@@ -95,9 +134,24 @@ class AnimalDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class CareTakerListView(LoginRequiredMixin, generic.ListView):
     model = CareTaker
-    queryset = CareTaker.objects.order_by("first_name")
     paginate_by = 2
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CareTakerListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form"] = CaretakerSearchForm(
+            initial={"username": username}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = CaretakerSearchForm(self.request.GET)
+        if form.is_valid():
+            queryset = queryset.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
+        return queryset
 
 class CareTakerDetailView(LoginRequiredMixin, generic.DetailView):
     model = CareTaker
