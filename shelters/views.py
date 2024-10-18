@@ -15,10 +15,14 @@ def index(request: HttpRequest) -> HttpResponse:
     num_animals = Animal.objects.count()
     num_caretakers = CareTaker.objects.count()
 
+    num_visits = request.session.get('num_visits', 0)
+    request.session["num_visits"] = num_visits + 1
+
     context = {
         "num_shelters": num_shelters,
         "num_animals": num_animals,
         "num_caretakers": num_caretakers,
+        "num_visits": num_visits + 1,
     }
 
     return render(request, "shelters/index.html", context)
