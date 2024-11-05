@@ -11,7 +11,7 @@ from shelters.forms import (
     ShelterForm,
     ShelterSearchForm,
     AnimalSearchForm,
-    CaretakerSearchForm
+    CaretakerSearchForm, CareTakerUpdateForm
 )
 from shelters.models import Shelter, Animal, CareTaker
 
@@ -39,7 +39,7 @@ class ShelterListView(LoginRequiredMixin, generic.ListView):
     model = Shelter
     context_object_name = "shelter_list"
     template_name = "shelters/shelter_list.html"
-    paginate_by = 2
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -82,7 +82,7 @@ class AnimalListView(LoginRequiredMixin, generic.ListView):
     model = Animal
     context_object_name = "animal_list"
     template_name = "shelters/animal_list.html"
-    paginate_by = 2
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -134,7 +134,7 @@ class AnimalDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class CareTakerListView(LoginRequiredMixin, generic.ListView):
     model = CareTaker
-    paginate_by = 2
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CareTakerListView, self).get_context_data(**kwargs)
@@ -165,7 +165,7 @@ class CareTakerCreateView(LoginRequiredMixin, generic.CreateView):
 
 class CareTakerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = CareTaker
-    form_class = CareTakerCreationForm
+    form_class = CareTakerUpdateForm
     success_url = reverse_lazy("shelters:caretaker-list")
 
 
