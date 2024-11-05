@@ -1,6 +1,23 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-  <p>Logged out</p>
-  <a href="{% url 'login' %}">Click here to log in again</a>
+<div class="page-header min-vh-100" style="background-image: url('{% static "img/login-bg.jpg" %}');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-4 mx-auto">
+        <div class="card shadow-lg mt-5">
+          <div class="card-header text-center pb-0">
+            <h4 class="font-weight-bold">Logged Out</h4>
+          </div>
+          <div class="card-body">
+            <p class="text-muted text-center">You have been logged out.</p>
+            <a href="{% url 'login' %}" class="btn btn-primary w-50 mx-auto d-block mt-3">Log in again</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
+
