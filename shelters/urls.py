@@ -15,7 +15,7 @@ from shelters.views import (
     CareTakerDetailView,
     CareTakerCreateView,
     CareTakerUpdateView,
-    CareTakerDeleteView, ShelterUpdateView, ShelterDeleteView,
+    CareTakerDeleteView,
 )
 
 app_name = "shelters"
