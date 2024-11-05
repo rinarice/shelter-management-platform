@@ -1,0 +1,55 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-transparent bg-white shadow-none fixed-top" style="background-color: rgba(255, 255, 255, 0.85) !important;">
+    <div class="container">
+        <a class="navbar-brand text-dark" href="{% url 'shelters:index' %}">
+            <i class="fa fa-home me-2" style="color: #333;"></i> <!-- Dark icon with spacing -->
+            Home
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'shelters:shelter-list' %}">
+                        <i class="fa fa-building me-2" style="color: #333;"></i> <!-- Dark icon with spacing -->
+                        Shelters
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'shelters:animal-list' %}">
+                        <i class="fas fa-paw me-2" style="color: #333;"></i> <!-- Dark Font Awesome icon with spacing -->
+                        Animals
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'shelters:caretaker-list' %}">
+                        <i class="fa fa-user me-2" style="color: #333;"></i> <!-- Dark icon with spacing -->
+                        Caretakers
+                    </a>
+                </li>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link ps-2 d-flex align-items-center text-dark" id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-circle me-2" style="color: #333;
+                      "></i> <!-- Dark
+                         icon with spacing -->
+                        Account
+                        <img src="{% static 'img/down-arrow-dark.svg' %}" alt="down-arrow" class="arrow ms-2">
+                    </a>
+                    <div class="dropdown-menu p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuAccount">
+                        {% if user.is_authenticated %}
+                            <h6 class="dropdown-header">Hello, {{ user.get_username }}</h6>
+                            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button class="dropdown-item" type="submit">Logout</button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'login' %}?next={{ request.path }}" class="dropdown-item">Login</a>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
