@@ -30,6 +30,20 @@ class CareTakerCreationForm(UserCreationForm):
         return username
 
 
+class CareTakerUpdateForm(forms.ModelForm):
+    class Meta:
+        model = CareTaker
+        fields = [
+            "first_name",
+            "last_name",
+            "username",
+            "email",
+            "phone_number",
+            "address",
+            "years_of_experience",
+        ]
+
+
 class AnimalForm(forms.ModelForm):
     class Meta:
         model = Animal
