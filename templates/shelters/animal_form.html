@@ -1,42 +1,106 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block background %}
+background-image: url('{% static "img/bg-17.jpg" %}');
+{% endblock %}
 
 {% block content %}
-  <h1>{{ object|yesno:"Update, Register New" }} Animal</h1>
-  <form action="" method="post" novalidate>
-    {% csrf_token %}
-    <div>
-      {{ form.non_field_errors }}
-      <label for="name">Name</label>
-      {{ form.name }}
+<div class="container mt-10">
+  <h3 class="text-center m-md-4 text-white">{{ object|yesno:"Update, Register New" }} 
+    Animal</h3>
+  <div class="card shadow-lg mx-auto" style="max-width: 400px;">
+    <div class="card-body">
+      <form action="" method="post" novalidate>
+        {% csrf_token %}
+
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            <ul>
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <div class="form-group mb-2">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" class="form-control" value="{{ form.name.value|default_if_none:'' }}" required>
+          {% if form.name.errors %}
+            <div class="text-danger">{{ form.name.errors|first }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="age">Age</label>
+          <input type="number" name="age" id="age" class="form-control" value="{{ form.age.value|default_if_none:'' }}" required>
+          {% if form.age.errors %}
+            <div class="text-danger">{{ form.age.errors|first }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="species">Species</label>
+          <input type="text" name="species" id="species" class="form-control" value="{{ form.species.value|default_if_none:'' }}" required>
+          {% if form.species.errors %}
+            <div class="text-danger">{{ form.species.errors|first }}</div>
+          {% endif %}
+        </div>
+      
+        {% if not object %}
+          <div class="form-group mb-2">
+            <label for="arrival_date">Arrival Date</label>
+            <input type="date" name="arrival_date" id="arrival_date" class="form-control" value="{{ form.arrival_date.value|default_if_none:'' }}" required>
+            {% if form.arrival_date.errors %}
+              <div class="text-danger">{{ form.arrival_date.errors|first }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+
+        <div class="form-group mb-2">
+          <label for="caretakers">Caretakers</label>
+          {{ form.caretakers }}
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="shelter">Shelter</label>
+          {{ form.shelter }}
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="description">Description</label>
+          <textarea name="description" id="description" class="form-control" required>{{ form.description.value|default_if_none:'' }}</textarea>
+          {% if form.description.errors %}
+            <div class="text-danger">{{ form.description.errors|first }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="is_adopted">Adopted</label>
+          <div class="form-check">
+            <input type="checkbox" name="is_adopted" id="is_adopted" class="form-check-input" {% if form.is_adopted.value %}checked{% endif %}>
+            <label class="form-check-label" for="is_adopted">Yes</label>
+          </div>
+        </div>
+
+        <div class="text-center mt-3">
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+      </form>
+
+      {% if object %}
+      <div class="text-center mt-3">
+        <a href="{% url 'shelters:animal-delete' object.pk %}" class="btn btn-outline-danger">Delete Animal</a>
+      </div>
+      {% endif %}
     </div>
-    <div>
-      <label for="age">Age</label>
-      {{ form.age }}
-    </div>
-    <div>
-      <label for="species">Species</label>
-      {{ form.species }}
-    </div>
-    <div>
-      <label for="arrival_date">Arrival Date</label>
-      {{ form.arrival_date }}
-    </div>
-    <div>
-      <label for="caretakers">Caretakers</label>
-      {{ form.caretakers }}
-    </div>
-    <div>
-      <label for="shelter">Shelter</label>
-      {{ form.shelter }}
-    </div>
-    <div>
-      <label for="shelter">Description</label>
-      {{ form.description }}
-    </div>
-    <div>
-      <label for="is_adopted">Adopted</label>
-      {{ form.is_adopted }}
-    </div>
-    <input type="submit" class="btn btn-primary" value="Submit">
-  </form>
+  </div>
+</div>
 {% endblock %}

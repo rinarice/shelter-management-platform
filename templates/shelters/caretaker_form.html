@@ -1,64 +1,102 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block background %}
+background-image: url('{% static "img/bg-17.jpg" %}');
+{% endblock %}
 
 {% block content %}
-  <h1>{{ object|yesno:"Update, Register New" }} Caretaker</h1>
-  <form action="" method="post" novalidate>
-    {% csrf_token %}
-    
-    {% if form.errors %}
-        <div class="alert alert-danger">
-            <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+<div class="container mt-5">
+  <h3 
+      class="text-center m-md-4 text-white">{{ object|yesno:"Update, Register New" }} Caretaker
+  </h3>
+  <div class="card shadow-lg mx-auto" style="max-width: 400px;">
+    <div class="card-body">
+      <form action="" method="post" novalidate>
+        {% csrf_token %}
 
-    <div>
-      {{ form.non_field_errors }}
-      <label for="username">Username</label>
-      {{ form.username }}
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            <ul>
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <div class="form-group mb-2">
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" class="form-control" value="{{ form.username.value|default_if_none:'' }}" required>
+          {% if form.username.errors %}
+            <div class="text-danger">{{ form.username.errors|first }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="first_name">First Name</label>
+          <input type="text" name="first_name" id="first_name" class="form-control" value="{{ form.first_name.value|default_if_none:'' }}" required>
+          {% if form.first_name.errors %}
+            <div class="text-danger">{{ form.first_name.errors|first }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="last_name">Last Name</label>
+          <input type="text" name="last_name" id="last_name" class="form-control" value="{{ form.last_name.value|default_if_none:'' }}" required>
+          {% if form.last_name.errors %}
+            <div class="text-danger">{{ form.last_name.errors|first }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" class="form-control" value="{{ form.email.value|default_if_none:'' }}" required>
+          {% if form.email.errors %}
+            <div class="text-danger">{{ form.email.errors|first }}</div>
+          {% endif %}
+        </div>
+      
+        <div class="form-group mb-2">
+          <label for="phone_number">Phone Number</label>
+          <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{ form.phone_number.value|default_if_none:'' }}" required>
+          {% if form.phone_number.errors %}
+            <div class="text-danger">{{ form.phone_number.errors|first }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="address">Address</label>
+          <input type="text" name="address" id="address" class="form-control" value="{{ form.address.value|default_if_none:'' }}" required>
+          {% if form.address.errors %}
+            <div class="text-danger">{{ form.address.errors|first }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="years_of_experience">Years of Experience</label>
+          <input type="number" name="years_of_experience" id="years_of_experience" class="form-control" value="{{ form.years_of_experience.value|default_if_none:'' }}" required>
+          {% if form.years_of_experience.errors %}
+            <div class="text-danger">{{ form.years_of_experience.errors|first }}</div>
+          {% endif %}
+        </div>
+
+        <div class="text-center mt-3">
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+      </form>
+
+      {% if object %}
+      <div class="text-center mt-3">
+        <a href="{% url 'shelters:caretaker-delete' object.pk %}" class="btn btn-outline-danger">Delete Caretaker</a>
+      </div>
+      {% endif %}
     </div>
-    <div>
-      {{ form.non_field_errors }}
-      <label for="first_name">First Name</label>
-      {{ form.first_name }}
-    </div>
-    <div>
-      {{ form.non_field_errors }}
-      <label for="last_name">Last Name</label>
-      {{ form.last_name }}
-    </div>
-    <div>
-      <label for="email">Email</label>
-      {{ form.email }}
-    </div>
-    <div>
-      <label for="password1">Password</label>
-      {{ form.password1 }}
-    </div>
-    <div>
-      <label for="password2">Confirm Password</label>
-      {{ form.password2 }}
-    </div>
-    <div>
-      <label for="phone_number">Phone Number</label>
-      {{ form.phone_number }}
-    </div>
-    <div>
-      <label for="address">Address</label>
-      {{ form.address }}
-    </div>
-    <div>
-      <label for="years_of_experience">Years of Experience</label>
-      {{ form.years_of_experience }}
-    </div>
-    <input type="submit" class="btn btn-primary" value="Submit">
-  </form>
+  </div>
+</div>
 {% endblock %}

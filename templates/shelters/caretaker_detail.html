@@ -1,12 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block background %}
+background-image: url('{% static "img/bg-17.jpg" %}');
+{% endblock %}
 
 {% block content %}
-  <h1>{{ object.first_name }} {{ object.last_name }}</h1>
-  <p>Email: {{ object.email }}</p>
-  <p>Phone Number: {{ object.phone_number }}</p>
-  <p>Address: {{ object.address }}</p>
-  <p>Years of Experience: {{ object.years_of_experience }}</p>
-  
-  <a href="{% url 'shelters:caretaker-delete' caretaker.pk %}" class="btn 
-  btn-danger">Remove Caretaker</a>
+<div class="container mt-5">
+  <div class="card shadow-lg mx-auto" style="border-radius: 15px; max-width: 600px;">
+    <div class="card-header bg-light text-white">
+      <h2 class="mb-0 text-dark">{{ object.first_name }} {{ object.last_name }}</h2>
+    </div>
+    <div class="card-body text-muted">
+      <p><strong>Email:</strong> {{ object.email }}</p>
+      <p><strong>Phone Number:</strong> {{ object.phone_number }}</p>
+      <p><strong>Address:</strong> {{ object.address }}</p>
+      <p><strong>Years of Experience:</strong> {{ object.years_of_experience }}</p>
+      <a href="{% url 'shelters:caretaker-update' object.pk %}" class="btn btn-outline-secondary">Edit</a>
+      <a href="{% url 'shelters:caretaker-delete' object.pk %}" class="btn btn-outline-danger">Remove Caretaker</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -1,31 +1,72 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block background %}
+background-image: url('{% static "img/bg-17.jpg" %}');
+{% endblock %}
 
 {% block content %}
-  <h1>CareTaker List</h1>
+<div class="container mt-5">
+  <h2 class="text-center mt-2 text-white">Caretakers</h2>
   
-  <form method="get" action="" class="form-inline mb-3">
-    {{ search_form }}
-    <input class="btn btn-secondary" type="submit" value="🔎">
+  <form method="get" action="" class="form-inline mb-4">
+    <div class="input-group rounded" style="max-width: 600px; margin: auto;">
+      {{ search_form.name.label_tag }}
+      <input type="search" class="form-control rounded text-white"
+             placeholder="Search by username" aria-label="Search" 
+             aria-describedby="search-addon" name="username" 
+             value="{{ request.GET.name|default:'' }}" 
+             style="padding-right: 40px;">
+      
+      <button class="input-group-text border-0" id="search-addon" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
   </form>
-  
+
   <a href="{% url 'shelters:caretaker-create' %}" class="btn btn-success mb-3">
     Register New Caretaker
   </a>
+
   {% if object_list %}
-    <ul>
-      {% for caretaker in object_list %}
-        <li>
-          <a href="{% url 'shelters:caretaker-detail' caretaker.pk %}"
-          >{{ caretaker.first_name }} {{ caretaker.last_name }}</a>
-          {% if caretaker == user %} (me) {% endif %}
-          <a href="{% url 'shelters:caretaker-update' caretaker.pk %}" class="btn 
-          btn-primary btn-sm ml-2">
-            Update
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
+  <div class="card shadow-2-strong" style="background-color: #f5f7fa; border-radius: 0.5rem;">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-borderless mb-0 text-center align-middle">
+          <thead class="bg-light">
+            <tr>
+              <th>Username</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone Number</th>
+              <th>Years of Experience</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for caretaker in object_list %}
+            <tr>
+              <td>
+                <a href="{% url 'shelters:caretaker-detail' caretaker.pk %}">{{ caretaker.username }}</a>
+              </td>
+              <td>{{ caretaker.first_name }}</td>
+              <td>{{ caretaker.last_name }}</td>
+              <td>{{ caretaker.phone_number }}</td>
+              <td>{{ caretaker.years_of_experience }}</td>
+              <td>
+                <a href="{% url 'shelters:caretaker-update' caretaker.pk %}" class="btn btn-primary btn-sm">Update</a>
+                <a href="{% url 'shelters:caretaker-detail' caretaker.pk %}" class="btn btn-info btn-sm">View</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
   {% else %}
-    <p>No caretakers found.</p>
+  <p>No caretakers found.</p>
   {% endif %}
+</div>
 {% endblock %}

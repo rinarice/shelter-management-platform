@@ -1,30 +1,80 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block background %}
+background-image: url('{% static "img/bg-17.jpg" %}');
+{% endblock %}
 
 {% block content %}
-  <h1>Animal List</h1>
-  
-  <form method="get" action="" class="form-inline mb-3">
-    {{ search_form }}
-    <input class="btn btn-secondary" type="submit" value="🔎">
+<div class="container mt-5">
+  <h2 class="text-center mt-2 text-white">Animals</h2>
+
+  <form method="get" action="" class="form-inline mb-4">
+    <div class="input-group rounded" style="max-width: 600px; margin: auto;">
+      {{ search_form.name.label_tag }}
+      <input type="search" class="form-control rounded text-white"
+             placeholder="Search by name" aria-label="Search" 
+             aria-describedby="search-addon" name="name" 
+             value="{{ request.GET.name|default:'' }}" 
+             style="padding-right: 40px;">
+      
+      <button class="input-group-text border-0" id="search-addon" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
   </form>
-  
+
   <a href="{% url 'shelters:animal-create' %}" class="btn btn-success mb-3">
     Register New Animal
   </a>
+
   {% if object_list %}
-    <ul>
-      {% for animal in object_list %}
-        <li>
-          <a href="{% url 'shelters:animal-detail' animal.pk %}"
-          >{{ animal.name }} - {{ animal.species }}
-          </a>
-          <a href="{% url 'shelters:animal-update' animal.pk %}" class="btn btn-primary btn-sm ml-2">
-            Update
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
+  <div class="card shadow-2-strong" style="background-color: #f5f7fa; border-radius: 0.5rem;">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-borderless mb-0 text-center align-middle">
+          <thead class="bg-light">
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Species</th>
+              <th>Status</th>
+              <th>Shelter</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for animal in object_list %}
+            <tr>
+              <td>
+                <a href="{% url 'shelters:animal-detail' animal.pk %}">{{ animal.name }}</a>
+              </td>
+              <td>{{ animal.age }}</td>
+              <td>{{ animal.species }}</td>
+              <td>
+                {% if animal.is_adopted %}
+                <span class="badge rounded-pill" style="background-color: #ffc107; color: black;">Adopted</span>
+                {% else %}
+                <span class="badge rounded-pill" style="background-color: #28a745; color: white;">Available</span>
+                {% endif %}
+              </td>
+              <td>
+                <a href="{% url 'shelters:shelter-detail' animal.shelter.pk %}">{{ animal.shelter.name }}</a>
+              </td>
+              <td>
+                <a href="{% url 'shelters:animal-update' animal.pk %}" class="btn btn-primary btn-sm">Update</a>
+                <a href="{% url 'shelters:animal-detail' animal.pk %}" class="btn btn-info btn-sm">View</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+  </div>
   {% else %}
-    <p>No animals found.</p>
+  <p>No animals found.</p>
   {% endif %}
+  </div>
+</div>
 {% endblock %}

@@ -1,11 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block background %}
+background-image: url('{% static "img/bg-17.jpg" %}');
+{% endblock %}
 
 {% block content %}
-  <h1>{{ object.name }}</h1>
-  <p>Location: {{ object.location }}</p>
-  <p>Contact Number: {{ object.contact_number }}</p>
-  <p>Capacity: {{ object.capacity }}</p>
-  <p>Current Animal Count: {{ object.current_animal_count }}</p>
-  <a href="{% url 'shelters:shelter-update' object.pk %}" class="btn btn-secondary">Edit</a>
-  <a href="{% url 'shelters:shelter-delete' object.pk %}" class="btn btn-danger">Delete</a>
+<div class="container mt-5">
+  <div class="card shadow-lg mx-auto" style="border-radius: 15px; max-width: 600px;">
+    <div class="card-header bg-light text-white">
+      <h2 class="mb-0 text-dark">{{ object.name }}</h2>
+    </div>
+    <div class="card-body text-muted">
+      <p><strong>Location:</strong> {{ object.location }}</p>
+      <p><strong>Contact Number:</strong> {{ object.contact_number }}</p>
+      <p><strong>Capacity:</strong> {{ object.capacity }}</p>
+      <p><strong>Current Animal Count:</strong> {{ object.current_animal_count }}</p>
+      <a href="{% url 'shelters:shelter-update' object.pk %}" class="btn btn-outline-secondary">Edit</a>
+      <a href="{% url 'shelters:shelter-delete' object.pk %}" class="btn btn-outline-danger">Delete Shelter</a>
+    </div>
+  </div>
+</div>
 {% endblock %}
