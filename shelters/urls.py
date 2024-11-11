@@ -28,7 +28,7 @@ urlpatterns = [
         name="shelter-list"
     ),
     path(
-        "shelters/<int:pk>",
+        "shelters/<int:pk>/",
         ShelterDetailView.as_view(),
         name="shelter-detail"
     ),
