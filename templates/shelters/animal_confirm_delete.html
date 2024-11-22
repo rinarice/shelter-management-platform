@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block background %}
+background-image: url('{% static "img/bg-17.jpg" %}');
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg mx-auto" style="border-radius: 15px; max-width: 600px;">
+    <div class="card-header bg-light text-white">
+      <h2 class="mb-0">Delete Animal</h2>
+    </div>
+    <div class="card-body text-muted">
+      <p>Are you sure you want to delete the animal: <strong>{{ object.name }}</strong>?</p>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, delete</button>
+        <a href="{% url 'shelters:animal-list' %}" class="btn btn-outline-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

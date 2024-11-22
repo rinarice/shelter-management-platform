@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% block title %}
+    <title>Shelter Management</title>
+  {% endblock %}
+
+  <link href="{% static 'css/material-kit.min.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  {% include "includes/navbar.html" %}
+
+  <div class="page-header align-items-start min-vh-100" 
+       style="{% block background %}background-color: white;{% endblock %}">
+    <span class="mask bg-gradient-dark opacity-5"></span>
+    
+    <div class="container d-flex flex-column justify-content-center min-vh-100">
+      <div class="main-panel">
+        <div class="content">
+          {% block content %}
+          {% endblock %}
+        </div>
+      
+      {% block pagination %}
+        <div class="pagination justify-content-lg-center">
+          {% include "includes/pagination.html" %}
+        </div>
+      {% endblock %}
+    </div>
+  </div>
+
+  <script src="{% static 'js/core/popper.min.js' %}"></script>
+  <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/plugins/moment.min.js' %}"></script>
+  <script src="{% static 'js/material-kit.min.js' %}"></script>
+  <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+  </div>
+</body>
+</html>

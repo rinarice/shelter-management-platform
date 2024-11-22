@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block background %}
+background-image: url('{% static "img/bg-17.jpg" %}');
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg mx-auto" style="border-radius: 15px; max-width: 600px;">
+    <div class="card-header bg-light text-white">
+      <h2 class="mb-0 text-dark">{{ object.name }} - {{ object.species }}</h2>
+    </div>
+    <div class="card-body text-muted">
+      <p><strong>Age:</strong> {{ object.age }}</p>
+      <p><strong>Arrival Date:</strong> {{ object.arrival_date }}</p>
+      <p><strong>Description:</strong> {{ object.description }}</p>
+      <p><strong>Shelter:</strong> {{ object.shelter.name }}</p>
+      <p><strong>Adopted:</strong> {{ object.is_adopted|yesno:"Yes,No" }}</p>
+      <a href="{% url 'shelters:animal-update' object.pk %}" class="btn btn-outline-secondary">Edit</a>
+      <a href="{% url 'shelters:animal-delete' object.pk %}" class="btn btn-outline-danger">Remove Animal</a>
+      
+      <h3 class="mt-4">Caretakers</h3>
+      <ul class="list-group mb-4">
+        {% for caretaker in object.caretakers.all %}
+        <li class="list-group-item">{{ caretaker.first_name }} {{ caretaker.last_name }}</li>
+        {% empty %}
+        <li class="list-group-item">No caretakers assigned.</li>
+        {% endfor %}
+      </ul>
+
+      <span style="float: right;">
+        {% if user in object.caretakers.all %}
+          <form method="post" action="{% url 'shelters:animal-detail' object.pk %}" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="stop_caring">
+            <button type="submit" class="btn btn-outline-danger">Unassign me from {{ object.name }}</button>
+          </form>
+        {% else %}
+          <form method="post" action="{% url 'shelters:animal-detail' object.pk %}" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="start_caring">
+            <button type="submit" class="btn btn-outline-success">Assign me 
+              to {{ object.name }}</button>
+          </form>
+        {% endif %}
+      </span>
+    </div>
+  </div>
+</div>
+{% endblock %}

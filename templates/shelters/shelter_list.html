@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block background %}
+background-image: url('{% static "img/bg-17.jpg" %}');
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mt-2 text-white">Shelters</h2>
+
+  <form method="get" action="" class="form-inline mb-4">
+    <div class="input-group rounded" style="max-width: 600px; margin: auto;">
+      {{ search_form.name.label_tag }}
+      <input type="search" class="form-control rounded text-white"
+             placeholder="Search by name" aria-label="Search" 
+             aria-describedby="search-addon" name="name" 
+             value="{{ request.GET.name|default:'' }}" 
+             style="padding-right: 40px;">
+      
+      <button class="input-group-text border-0" id="search-addon" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </form>
+
+  <a href="{% url 'shelters:shelter-create' %}" class="btn btn-success mb-3">
+    Register New Shelter
+  </a>
+
+  {% if object_list %}
+  <div class="card shadow-2-strong" style="background-color: #f5f7fa; border-radius: 0.5rem;">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-borderless mb-0 text-center align-middle">
+          <thead class="bg-light">
+            <tr>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Capacity</th>
+              <th>Current Animal Count</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for shelter in object_list %}
+            <tr>
+              <td>
+                <a href="{% url 'shelters:shelter-detail' shelter.pk %}">{{ shelter.name }}</a>
+              </td>
+              <td>{{ shelter.location }}</td>
+              <td>{{ shelter.capacity }}</td>
+              <td>{{ shelter.current_animal_count }}</td>
+              <td>
+                <a href="{% url 'shelters:shelter-update' shelter.pk %}" class="btn btn-primary btn-sm">Update</a>
+                <a href="{% url 'shelters:shelter-detail' shelter.pk %}" class="btn btn-info btn-sm">View</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p>No shelters found.</p>
+  {% endif %}
+</div>
+{% endblock %}
