@@ -1,0 +1,374 @@
+[
+{
+    "model": "shelters.shelter",
+    "pk": 2,
+    "fields": {
+        "name": "Happy Paws Shelter",
+        "location": "Lisbon",
+        "contact_number": "111-222-3333",
+        "capacity": 50,
+        "current_animal_count": 20
+    }
+},
+{
+    "model": "shelters.shelter",
+    "pk": 3,
+    "fields": {
+        "name": "Furry Friends Haven",
+        "location": "Porto",
+        "contact_number": "222-333-4445",
+        "capacity": 30,
+        "current_animal_count": 15
+    }
+},
+{
+    "model": "shelters.shelter",
+    "pk": 4,
+    "fields": {
+        "name": "Safe Haven for Animals",
+        "location": "Braga",
+        "contact_number": "333-444-5555",
+        "capacity": 40,
+        "current_animal_count": 39
+    }
+},
+{
+    "model": "shelters.shelter",
+    "pk": 6,
+    "fields": {
+        "name": "Pawprints Shelter",
+        "location": "Lisbon",
+        "contact_number": "111-222-3333",
+        "capacity": 20,
+        "current_animal_count": 3
+    }
+},
+{
+    "model": "shelters.shelter",
+    "pk": 8,
+    "fields": {
+        "name": "Sweet Paws",
+        "location": "Loures",
+        "contact_number": "111-222-3456",
+        "capacity": 20,
+        "current_animal_count": 11
+    }
+},
+{
+    "model": "shelters.shelter",
+    "pk": 9,
+    "fields": {
+        "name": "Animal Rescue",
+        "location": "Algarve",
+        "contact_number": "999-111-5555",
+        "capacity": 25,
+        "current_animal_count": 19
+    }
+},
+{
+    "model": "shelters.shelter",
+    "pk": 10,
+    "fields": {
+        "name": "Party Poopers",
+        "location": "Madrid",
+        "contact_number": "555-555-555",
+        "capacity": 35,
+        "current_animal_count": 20
+    }
+},
+{
+    "model": "shelters.caretaker",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$XIh1FI4f4unvsL4g7Ad5XY$6XEMFpXUF4GID974um97zXA/hgWvTuJwrU3hMB3aFVI=",
+        "last_login": "2024-12-02T13:56:25.874Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "Rina",
+        "last_name": "Rice",
+        "email": "rinarice@example.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-10-11T10:04:20.611Z",
+        "phone_number": "999-888-7777",
+        "address": "119 Rice St, Riceland",
+        "years_of_experience": 49,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "shelters.caretaker",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$Il3WxZxa0nTbaeeJ9dmGaZ$LLukbUpMXihNG9WDH/RaV7OVzVztOIuX2OuThTN0GSg=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "caretaker1",
+        "first_name": "Alice",
+        "last_name": "Smith",
+        "email": "caretaker1@example.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-10-14T09:47:48Z",
+        "phone_number": "123-456-7890",
+        "address": "123 Main St, Lisbon",
+        "years_of_experience": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "shelters.caretaker",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$qZAfoDGOlcHNsy8SSD2SBk$Tky+aiP2x0YzKcl2cTXbbDNybW9YPRt0fx5wA4/fMPU=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "caretaker2",
+        "first_name": "Bob",
+        "last_name": "Johnson",
+        "email": "caretaker2@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-14T09:53:34.839Z",
+        "phone_number": "234-567-8901",
+        "address": "456 Elm St, Lisbon",
+        "years_of_experience": 3,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "shelters.caretaker",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$Acg6ALnGIceCNggJ1WUx1w$/bHueCvyGnsIrRqlSHzUeehPRFCXulzVNcOS1gOuW7o=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "carol.brown",
+        "first_name": "Carol",
+        "last_name": "Brown",
+        "email": "caretaker3@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-14T09:54:36.819Z",
+        "phone_number": "345-678-9012",
+        "address": "789 Oak St, Lisbon",
+        "years_of_experience": 7,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "shelters.caretaker",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$n3pxx6JQcqOWNVo2IC33Is$zCPu59dcWV4VS6N4ObeHd6dvlxPkoKXCt1M1UZCv/yY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "david.wilson",
+        "first_name": "David",
+        "last_name": "Wilson",
+        "email": "caretaker4@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-14T09:55:34.701Z",
+        "phone_number": "456-789-0123",
+        "address": "321 Maple St, Lisbon",
+        "years_of_experience": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "shelters.caretaker",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$gihiDNQ5ot3hHmtAw0bW3u$xv2HBSzmWS4Ky4NmB9690ZPfRais4y8NRnEoyjbWAz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "emma.davis",
+        "first_name": "Emma",
+        "last_name": "Davis",
+        "email": "caretaker5@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-14T09:56:20.588Z",
+        "phone_number": "567-890-1234",
+        "address": "654 Pine St, Lisbon",
+        "years_of_experience": 6,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "shelters.caretaker",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$RJ1y2zkTfMTIKSosyIwCQI$WhNXjo7q6cu2gV7/rJeanQC0KuYzLLydgZBZjdje7ZA=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "avasawyer",
+        "first_name": "Ava",
+        "last_name": "Sawyer",
+        "email": "avasawer@cake.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-18T23:41:48.171Z",
+        "phone_number": "555-555-5555",
+        "address": "WWBD St",
+        "years_of_experience": 105,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "shelters.animal",
+    "pk": 2,
+    "fields": {
+        "name": "Bella",
+        "age": 3,
+        "species": "Cat",
+        "arrival_date": "2024-09-26",
+        "description": "Calm and loving.",
+        "is_adopted": false,
+        "shelter": 2,
+        "caretakers": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "shelters.animal",
+    "pk": 3,
+    "fields": {
+        "name": "Max",
+        "age": 2,
+        "species": "Dog",
+        "arrival_date": "2024-08-11",
+        "description": "Friendly and energetic.",
+        "is_adopted": false,
+        "shelter": 2,
+        "caretakers": [
+            3
+        ]
+    }
+},
+{
+    "model": "shelters.animal",
+    "pk": 4,
+    "fields": {
+        "name": "Charile",
+        "age": 1,
+        "species": "Dog",
+        "arrival_date": "2024-08-19",
+        "description": "Playful and loves to run.",
+        "is_adopted": false,
+        "shelter": 4,
+        "caretakers": [
+            6
+        ]
+    }
+},
+{
+    "model": "shelters.animal",
+    "pk": 5,
+    "fields": {
+        "name": "Daisy",
+        "age": 4,
+        "species": "Cat",
+        "arrival_date": "2024-10-15",
+        "description": "Sweet and cuddly.",
+        "is_adopted": false,
+        "shelter": 3,
+        "caretakers": [
+            5
+        ]
+    }
+},
+{
+    "model": "shelters.animal",
+    "pk": 7,
+    "fields": {
+        "name": "Maxi",
+        "age": 3,
+        "species": "Dog",
+        "arrival_date": "2024-10-18",
+        "description": "Fear biter, is afraid of babies, cats, and broccoli.",
+        "is_adopted": false,
+        "shelter": 6,
+        "caretakers": [
+            9
+        ]
+    }
+},
+{
+    "model": "shelters.animal",
+    "pk": 8,
+    "fields": {
+        "name": "Ninja",
+        "age": 3,
+        "species": "Dog",
+        "arrival_date": "2024-10-23",
+        "description": "Very energetic and full of love.",
+        "is_adopted": false,
+        "shelter": 3,
+        "caretakers": [
+            1,
+            9,
+            4
+        ]
+    }
+},
+{
+    "model": "shelters.animal",
+    "pk": 9,
+    "fields": {
+        "name": "Boni",
+        "age": 2,
+        "species": "Cat",
+        "arrival_date": "2024-10-25",
+        "description": "Shy but friednly",
+        "is_adopted": false,
+        "shelter": 9,
+        "caretakers": [
+            1,
+            6
+        ]
+    }
+},
+{
+    "model": "shelters.animal",
+    "pk": 10,
+    "fields": {
+        "name": "Solar",
+        "age": 35,
+        "species": "Cat",
+        "arrival_date": "2024-10-12",
+        "description": "Loud",
+        "is_adopted": false,
+        "shelter": 10,
+        "caretakers": [
+            1
+        ]
+    }
+},
+{
+    "model": "shelters.animal",
+    "pk": 11,
+    "fields": {
+        "name": "Byul",
+        "age": 34,
+        "species": "Dog",
+        "arrival_date": "2024-10-12",
+        "description": "Golden retriever energy",
+        "is_adopted": false,
+        "shelter": 10,
+        "caretakers": [
+            1
+        ]
+    }
+}
+]
