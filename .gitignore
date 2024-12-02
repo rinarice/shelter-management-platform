@@ -6,7 +6,6 @@
 # Ignore specific files and directories
 .DS_Store
 .idea/
-staticfiles/
 
 *.log
 *.pot
