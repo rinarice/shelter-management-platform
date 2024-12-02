@@ -44,11 +44,13 @@ python manage.py runserver
 
 ---
 
-## Usage
+## Live Demo
 
+The project is live at: [Animal Shelter Management System](https://shelter-management-platform.onrender.com/)
 
-The project will be deployed soon on [Render](https://render.com).  
-Stay tuned for the deployment link and login credentials.  
+### Demo Credentials
+- **Username:** demo_user
+- **Password:** DemoPass123
 
 
 ---
