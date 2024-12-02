@@ -44,6 +44,12 @@
   height: auto;
 }
 
+.hint:hover .hint-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+
 @media (max-width: 768px) {
   .navbar {
     width: 90%;

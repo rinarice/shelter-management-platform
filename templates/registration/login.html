@@ -40,6 +40,18 @@ background-image: url('{% static "img/bg-loggedout.png" %}');
                 </button>
               </div>
             </form>
+          
+            <div class="mt-3 text-center">
+              <small class="text-muted">
+                <a href="#" 
+                   data-bs-toggle="tooltip" 
+                   data-bs-placement="top" 
+                   title="Username: test_user  Password: TestUser321"
+                   style="cursor: pointer; text-decoration: underline;">
+                  Hover here for test credentials
+                </a>
+              </small>
+            </div>
           </div>
         </div>
       </div>
@@ -47,3 +59,13 @@ background-image: url('{% static "img/bg-loggedout.png" %}');
   </div>
 </div>
 {% endblock %}
+
+<script>
+  // Initialize Bootstrap tooltips
+  document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+  });
+</script>

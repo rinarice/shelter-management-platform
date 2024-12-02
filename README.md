@@ -2,7 +2,7 @@
 
 ## Description
 
-A Django-based application that streamlines animal shelter management, allowing users to track animals, caretakers, and shelter details efficiently. The system is designed to help shelters keep their operations organized with features for managing shelters, assigning caretakers, and logging animal information.
+A Django-based application designed to help shelters keep their operations organized with features for managing shelters, assigning caretakers, and logging animal information.
 
 ---
 
